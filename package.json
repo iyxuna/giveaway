@@ -3,15 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "nodemon .server/index.js",
     "build": "next build",
-    "start": "next start",
+    "start": "nodemon server/index.js",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.2.4",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "bootstrap": "5.2.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.1",
+    "next": "12.2.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.3.0",
+    "valtio": "^1.6.3"
   },
   "devDependencies": {
     "eslint": "8.21.0",

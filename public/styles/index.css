@@ -1,0 +1,48 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.container{ display: flex; justify-content: center; align-items: center; margin-top: 40px; }
+
+.main{ width: 360px; background-color: rgb(33,33,33); min-height: 720px; }
+.app{  padding: 0 15px 20px; }
+
+/*.mask{ background-image: url("/images/fire@2x.png"); }*/
+/*.fire_img{ width: 100%; position: relative; bottom: -15px; background-clip: padding-box; }*/
+
+.header{ display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+.header .profile_img{ width: 40px; height: 40px; }
+
+.logo{ display: flex; align-items: center; }
+.logo img{ width: 50px; height: 62px; }
+.logo_title{ color: #FFFFFF; }
+.lb_btn{ font-size: 14px; font-weight: bold; height: 26px; padding: 5px 10px; border-radius: 5px; background-color: #646464; color: #FFFFFF; border: 0; }
+
+.inner{ padding: 5px 15px; }
+
+.admin_wrap{ display: flex; justify-content: center; flex-direction: column; align-items: center; margin-top: 80px; }
+.input_area{ width: 100%; margint-top: 80px; }
+
+.user_wrap{ display: flex; justify-content: space-between; flex-wrap: wrap; }
+.user_card{ width: 93px; height: 120px; background-color: #FFFFFF; border-radius: 10px; margin-top: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.user_card img{ width: 85px; height: 85px; margin-top: 4px; }
+.user_card span{ margin-top: 8px; font-size: 16px; font-weight: bold; }
+
+.user_card .hover_box{ color: #FFFFFF; display: flex; justify-content: center; align-items: center; width: 93px; height: 120px; background-color: #dc1c25; position: absolute; border-radius: 9px; opacity: 0; }
+.user_card:hover .hover_box{ opacity: 0.8;}
+
+.img_wrap{ display: flex; align-items: center; flex-direction: column; }
+.img_wrap img{ width: 100%; cursor: pointer; }
+
+.main_btn{ width: 100%; margin-top: 15px; background-color: #dc1c25; border: 0; border-radius: 10px; padding: 15px 0; font-size: 24px; font-weight: bold; color: #FFFFFF;  }
+.main_btn.fail{ background-color: #646464; }
+
+.inner.result{ margin-top: 80px; }
+
+
+.items.on{ background-color: #FFFFFF; }
+.items{ background-color: #c1c1c1; border-radius: 8px; padding: 5px; display: flex; align-items: center; margin-top: 10px; justify-content: space-between; }
+.items .result_img{ width: 24px; height: 24px; margin-right: 10px; }
+
+.item{ display: flex; align-items: center; }
+.item span{ font-size: 18px; font-weight: bold; padding: 0 15px; }
+.item .rank{ position: absolute; }
+.item .profile_img{ width: 40px; height: 40px; margin-left: 40px; border-radius: 8px; }
