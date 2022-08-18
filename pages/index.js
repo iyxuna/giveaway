@@ -7,7 +7,7 @@ import {useSnapshot} from "valtio";
 
 const state = proxy;
 
-const Index = ({_users=[], _numbers}) => {
+const Index = ({_users=[], _numbers=[], _gift=null}) => {
     const router = useRouter();
     const snap = useSnapshot(state);
 
@@ -31,6 +31,9 @@ const Index = ({_users=[], _numbers}) => {
     });
 
     const handleClick = (e, idx)=> {
+        if(_gift === null ){
+            return
+        }
         const currentWeek = week;
         const result = numbers;
         const match = result.indexOf(parseInt(idx));
@@ -84,7 +87,7 @@ const Index = ({_users=[], _numbers}) => {
                             <div className={"user_wrap"}>
                                 {_users.map((val, idx)=>{
                                     return(
-                                    <div key={idx} className={"user_card"} onClick={e=>handleClick(e, val.eid)}>
+                                    <div key={idx} className={`user_card ${_gift===null ? "gray" : ""}`} onClick={e=>handleClick(e, val.eid)}>
                                         <div className={"hover_box"} id={val.name}>선택</div>
                                         <img src={val.image_url} alt={val.name} />
                                         <span>{val.name} </span>
@@ -106,11 +109,14 @@ export const getServerSideProps = async ctx=>{
 
     const _users = await axios.get("http://localhost:3000/api/user");
     const _numbers = await axios.get("http://localhost:3000/api/admin");
+    const _gift = await axios.get("http://localhost:3000/api/admin/gift");
 
+    console.log("gift: ", _gift.data.data )
     return{
         props : {
             _users: _users.data.data,
-            _numbers: _numbers.data.data
+            _numbers: _numbers.data.data,
+            _gift: _gift.data.data
         }
     }
 }

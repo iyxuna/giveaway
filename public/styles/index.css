@@ -28,6 +28,7 @@
 
 .user_card .hover_box{ color: #FFFFFF; display: flex; justify-content: center; align-items: center; width: 93px; height: 120px; background-color: #dc1c25; position: absolute; border-radius: 9px; opacity: 0; }
 .user_card:hover .hover_box{ opacity: 0.8;}
+.gray{ filter: grayscale(100%); }
 
 .img_wrap{ display: flex; align-items: center; flex-direction: column; }
 .img_wrap img{ width: 100%; cursor: pointer; }
@@ -36,7 +37,6 @@
 .main_btn.fail{ background-color: #646464; }
 
 .inner.result{ margin-top: 80px; }
-
 
 .items.on{ background-color: #FFFFFF; }
 .items{ background-color: #c1c1c1; border-radius: 8px; padding: 5px; display: flex; align-items: center; margin-top: 10px; justify-content: space-between; }
