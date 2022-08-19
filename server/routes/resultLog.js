@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Log = require("../models/resultLog");
 const User = require("../models/user");
+const Admin = require("../models/admin");
 
 const currentWeek =()=>{
     const currentDate = new Date();
@@ -50,9 +51,19 @@ router.post("/log", async (req, res)=>{
 
 // 로그 전체 가져오기
 router.get("/result", async (req, res)=>{
-    const findLog = await Log.find({ week: currentWeek() }).populate("user_id").exec();
+    let week = req.query?.week;
+    week = week === "" ? currentWeek() : week
 
-    await res.json({ data: findLog, week: currentWeek() });
+    const findLog = await Log.find({ week: week }).populate("user_id").exec();
+
+    await res.json({ data: findLog, week: week });
+});
+
+//
+router.get("/select", async (req, res)=>{
+    const result = await Admin.find({}).exec();
+
+    await res.json({ data: result });
 });
 
 module.exports = router;

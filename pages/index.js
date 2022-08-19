@@ -7,7 +7,7 @@ import {useSnapshot} from "valtio";
 
 const state = proxy;
 
-const Index = ({_users=[], _numbers=[], _gift=null}) => {
+const Index = ({_users=[], _numbers=[], _gift=null, _logs=[]}) => {
     const router = useRouter();
     const snap = useSnapshot(state);
 
@@ -30,10 +30,24 @@ const Index = ({_users=[], _numbers=[], _gift=null}) => {
         }
     });
 
+    // 현재 주차 로그에 아이디 있는지 체크
+    let log_users = [];
+    let log_week = "";
+    _logs.map((val, key)=>{
+        if( val.week === currentWeek() ){
+            log_users.push(val.eid);
+            log_week = val.week;
+        }
+    })
+
     const handleClick = (e, idx)=> {
-        if(_gift === null ){
+        if( _gift === null ){
             return
         }
+        if( log_users.indexOf(idx) !== -1 ){
+            return
+        }
+
         const currentWeek = week;
         const result = numbers;
         const match = result.indexOf(parseInt(idx));
@@ -43,7 +57,7 @@ const Index = ({_users=[], _numbers=[], _gift=null}) => {
         // 비밀번호 검증
         axios.post("/api/user/pwCheck", { password: _pw, eid: idx }).then(res=>{
             if( res.data.data ){
-                // 뽑기를 했는지 체크
+                // 뽑기 했는지 체크
                 axios.post("/api/resultLog/check", {eid: idx, week: week}).then(res=>{
                     if( res.data.success ){
                         router.push(`/giveaway/${idx}?week=${currentWeek}`);
@@ -83,17 +97,16 @@ const Index = ({_users=[], _numbers=[], _gift=null}) => {
                             <button className={"lb_btn"} onClick={e=>handleLeaderboard(e)}>리더보드</button>
                         </header>
 
-                        <div className={"inner"}>
+                        <div className={`inner ${_gift===null ? "gray" : ""}`}>
+                            <h1 className={"notice"}>이벤트 기간이 아닙니다.</h1>
                             <div className={"user_wrap"}>
-                                {_users.map((val, idx)=>{
-                                    return(
-                                    <div key={idx} className={`user_card ${_gift===null ? "gray" : ""}`} onClick={e=>handleClick(e, val.eid)}>
+                                {_users.map((val, idx)=>(
+                                    <div key={idx} id={val.eid} className={`user_card ${log_users.indexOf(val.eid) !== -1 ? "disable_card" : ""}`} onClick={e=>handleClick(e, val.eid)}>
                                         <div className={"hover_box"} id={val.name}>선택</div>
                                         <img src={val.image_url} alt={val.name} />
                                         <span>{val.name} </span>
                                     </div>
-                                    )
-                                })}
+                                ))}
                             </div>
                         </div>
 
@@ -110,13 +123,14 @@ export const getServerSideProps = async ctx=>{
     const _users = await axios.get("http://localhost:3000/api/user");
     const _numbers = await axios.get("http://localhost:3000/api/admin");
     const _gift = await axios.get("http://localhost:3000/api/admin/gift");
+    const _logs = await axios.get("http://localhost:3000/api/resultLog");
 
-    console.log("gift: ", _gift.data.data )
     return{
         props : {
             _users: _users.data.data,
             _numbers: _numbers.data.data,
-            _gift: _gift.data.data
+            _gift: _gift.data.data,
+            _logs: _logs.data.data
         }
     }
 }

@@ -11,12 +11,14 @@ const Admin = ({_allLength}) => {
         const _userLength = length; // 당첨인원
         let number = [];
         while (number.length < _userLength) {
-            let num = parseInt(Math.random() * _allLength + 1);
+            let num = parseInt(Math.random() * _allLength);
             if (number.indexOf(num) == -1) {
                 number.push(num);
             }
         }
         number.sort((a,b)=>a-b);
+
+        console.log("number: ", number)
 
         axios.post("/api/admin/number", {number: number}).then(res=>{
             if( res.data.success ){
@@ -70,6 +72,8 @@ const Admin = ({_allLength}) => {
 export const getServerSideProps = async ctx=>{
     const _query = ctx.query;
     const _users = await axios.get("http://localhost:3000/api/user");
+
+    console.log("userlength: ", _users.data.data.length)
 
     return{
         props : {

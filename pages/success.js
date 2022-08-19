@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
+import ScratchCard from "react-scratchcard-v2";
+// import IMG from "/images/img.png";
+import Image from "next/image";
 
 const Success = props => {
     const router = useRouter();
@@ -8,6 +11,13 @@ const Success = props => {
     // 자랑하기
     const handleShare = e => {
         router.push("/leaderboard");
+    }
+
+    const settings = {
+        width: 320,
+        height: 420,
+        image: "/images/img.png",
+        finishPercent: 50
     }
 
     return (
@@ -26,10 +36,14 @@ const Success = props => {
                         </header>
 
                         <div className={"inner result"}>
-                            <div className={"img_wrap"}>
-                                <img src={"/images/success.jpg"} />
-                            </div>
-                            <button className={"main_btn"} onClick={e=>{handleShare(e)}}>자랑하기</button>
+                            {/*<ScratchCard source={require("/images/img.png")}>*/}
+                                <div className={"scratch_wrap"}>
+                                    <div className={"img_wrap"}>
+                                        <img src={"/images/success.jpg"} />
+                                    </div>
+                                    <button className={"main_btn"} onClick={e=>{handleShare(e)}}>자랑하기</button>
+                                </div>
+                            {/*</ScratchCard>*/}
                         </div>
 
                     </div>

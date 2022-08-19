@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import axios from "axios";
 
-const Leaderboard = ({_logs, _week}) => {
-       return (
+const Leaderboard = ({_logs=[], _week, _selectList=[]}) => {
+    const [ selected, setSelected ] = useState(_week);
+    const router = useRouter();
+
+    const handleSelectChange = e => {
+        setSelected(e.target.value);
+        router.push(`/leaderboard?week=${e.target.value}`);
+    }
+
+   return (
         <>
             <div className={"container"}>
                 <div className={"main"}>
@@ -17,7 +25,12 @@ const Leaderboard = ({_logs, _week}) => {
                                     <span className={"logo_title"}>GIVEAWAY</span>
                                 </div>
                             </a>
-                            <button className={"lb_btn"}>{_week}</button>
+                            {/*<button className={"lb_btn"}>{_week}</button>*/}
+                            <select value={selected} onChange={handleSelectChange}>
+                                {_selectList.map((val, key)=>(
+                                    <option key={key} value={val.week}>{val.week}</option>
+                                ))}
+                            </select>
                         </header>
 
                         <div className={"inner"}>
@@ -33,7 +46,6 @@ const Leaderboard = ({_logs, _week}) => {
                                                 </div>
                                                  {/*당첨인 애들만 */}
                                                 {val.result==="당첨" ? <img className={"result_img"} src={"/images/img-fire@2x.png"} /> : <></>}
-
                                             </li>
                                         )
                                     })}
@@ -49,13 +61,15 @@ const Leaderboard = ({_logs, _week}) => {
 };
 
 export const getServerSideProps = async ctx=>{
-    const _query = ctx.query;
-    const _logs = await axios.get("http://localhost:3000/api/resultLog/result");
+    const week = !ctx.query?.week ? "" : ctx.query?.week;
+    const _logs = await axios.get(`http://localhost:3000/api/resultLog/result?week=${week}`);
+    const _selectList = await axios.get("http://localhost:3000/api/resultLog/select");
 
     return{
         props : {
             _logs: _logs.data.data,
-            _week: _logs.data.week
+            _week: _logs.data.week,
+            _selectList: _selectList.data.data
         }
     }
 }

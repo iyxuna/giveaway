@@ -28,7 +28,14 @@
 
 .user_card .hover_box{ color: #FFFFFF; display: flex; justify-content: center; align-items: center; width: 93px; height: 120px; background-color: #dc1c25; position: absolute; border-radius: 9px; opacity: 0; }
 .user_card:hover .hover_box{ opacity: 0.8;}
-.gray{ filter: grayscale(100%); }
+
+.inner .notice{ display: none; }
+.inner.gray .notice{ display: block; color: #FFFFFF; text-align: center; font-size: 16px; font-weight: bold; margin: 5px 0; }
+.inner.gray{ filter: grayscale(100%); }
+.inner.gray:hover .hover_box{ opacity: 0; }
+
+.user_card.disable_card{ filter: grayscale(100%); }
+.user_card.disable_card:hover .hover_box{ opacity: 0; }
 
 .img_wrap{ display: flex; align-items: center; flex-direction: column; }
 .img_wrap img{ width: 100%; cursor: pointer; }
@@ -46,3 +53,5 @@
 .item span{ font-size: 18px; font-weight: bold; padding: 0 15px; }
 .item .rank{ position: absolute; }
 .item .profile_img{ width: 40px; height: 40px; margin-left: 40px; border-radius: 8px; }
+
+select{ width: 100px; padding: 3px 5px; border: 0; border-radius: 5px; font-size: 14px; }
