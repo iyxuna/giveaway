@@ -36,7 +36,7 @@ const Success = props => {
                         </header>
 
                         <div className={"inner result"}>
-                            <ScratchCard {...settings}>
+                            {/*<ScratchCard {...settings}>*/}
                                 <div className={"scratch_wrap"}>
                                 {/*<Image src={"/images/img.png"} width={320} height={420} />*/}
                                     <div className={"img_wrap"}>
@@ -44,7 +44,7 @@ const Success = props => {
                                     </div>
                                     <button className={"main_btn"} onClick={e=>{handleShare(e)}}>자랑하기</button>
                                 </div>
-                            </ScratchCard>
+                            {/*</ScratchCard>*/}
                         </div>
 
                     </div>
