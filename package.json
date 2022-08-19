@@ -28,6 +28,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.3.0",
+    "react-scratch-coupon": "^1.0.7",
     "react-scratchcard": "^1.1.2",
     "react-scratchcard-v2": "^1.1.1",
     "valtio": "^1.6.3"

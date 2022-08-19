@@ -1,12 +1,20 @@
 import React, {useEffect} from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
+import ScratchCard from "react-scratch-coupon";
 
 const Fail = props => {
     const router = useRouter();
 
     const handleResult = e => {
         router.push("/leaderboard");
+    }
+
+    const settings = {
+        width: 300,
+        height: 423,
+        cover: ("/images/scratch.jpg"),
+        finishPercent: 60
     }
 
     return (
@@ -22,14 +30,18 @@ const Fail = props => {
                                     <span className={"logo_title"}>GIVEAWAY</span>
                                 </div>
                             </a>
-                            {/*<img className={"profile_img"} src={""} />*/}
                         </header>
 
                         <div className={"inner result"}>
-                            <div className={"img_wrap"}>
-                                <img src={"/images/fail.png"} />
-                            </div>
-                            <button className={"main_btn fail"} onClick={e=>handleResult(e)}>당첨자보기</button>
+                            <ScratchCard {...settings}>
+                                <div className={"scratch_wrap"}>
+                                    <div className={"img_wrap"}>
+                                        <img src={"/images/fail.png"} />
+                                    </div>
+                                    <button className={"main_btn fail"} onClick={e=>handleResult(e)}>당첨자보기</button>
+                                </div>
+                            </ScratchCard>
+
                         </div>
 
                     </div>

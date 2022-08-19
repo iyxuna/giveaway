@@ -1,19 +1,21 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+@font-face {
+    font-family: Anton;
+    src: url("1d35a1c6b0a096a2dfeb3b1b6d655738.ttf");
+}
+
 .container{ display: flex; justify-content: center; align-items: center; margin-top: 40px; }
 
 .main{ width: 360px; background-color: rgb(33,33,33); min-height: 720px; }
 .app{  padding: 0 15px 20px; }
-
-/*.mask{ background-image: url("/images/fire@2x.png"); }*/
-/*.fire_img{ width: 100%; position: relative; bottom: -15px; background-clip: padding-box; }*/
 
 .header{ display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
 .header .profile_img{ width: 40px; height: 40px; }
 
 .logo{ display: flex; align-items: center; }
 .logo img{ width: 50px; height: 62px; }
-.logo_title{ color: #FFFFFF; }
+.logo_title{ color: #FFFFFF; font-family: Anton; font-size: 26px; }
 .lb_btn{ font-size: 14px; font-weight: bold; height: 26px; padding: 5px 10px; border-radius: 5px; background-color: #646464; color: #FFFFFF; border: 0; }
 
 .inner{ padding: 5px 15px; }
@@ -56,4 +58,7 @@
 
 select{ width: 100px; padding: 3px 5px; border: 0; border-radius: 5px; font-size: 14px; }
 
+.scratch_wrap{ position: absolute; top: 0; left: 0; }
+#js-container{ border: 0 !important; height: inherit !important; }
+#js-canvas{ z-index: 2; border-radius: 10px; }
 .scratch_wrap Image{ position: absolute; background-color: #dc1c25; }

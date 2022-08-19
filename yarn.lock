@@ -2186,7 +2186,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2272,6 +2272,13 @@ react-router@6.3.0:
   integrity sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ==
   dependencies:
     history "^5.2.0"
+
+react-scratch-coupon@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-scratch-coupon/-/react-scratch-coupon-1.0.7.tgz#eabf0b01edee91557d7bbf88484a41d5234cab4a"
+  integrity sha512-hpNutFrIKz8NukYwfNc+QabBXGWCiyJ3e9cFgH2DuZxWKZb8QNKtiHrccuFyAqhGLLR9Cm2tl7pRE1GtSZw0bw==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-scratchcard-v2@^1.1.1:
   version "1.1.1"
