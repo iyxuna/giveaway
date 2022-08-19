@@ -55,3 +55,5 @@
 .item .profile_img{ width: 40px; height: 40px; margin-left: 40px; border-radius: 8px; }
 
 select{ width: 100px; padding: 3px 5px; border: 0; border-radius: 5px; font-size: 14px; }
+
+.scratch_wrap Image{ position: absolute; background-color: #dc1c25; }
