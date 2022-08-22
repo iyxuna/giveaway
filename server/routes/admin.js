@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Admin = require("../models/admin");
 
+// 현재 주차 구하기
 const currentWeek =()=>{
     const currentDate = new Date();
     const startDate = new Date(currentDate.getFullYear(), 0, 1);

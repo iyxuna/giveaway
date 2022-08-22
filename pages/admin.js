@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import axios from "axios";
+import Port from "../config";
 
 const Admin = ({_allLength}) => {
     const router = useRouter();
@@ -50,7 +51,6 @@ const Admin = ({_allLength}) => {
                                     <span className={"logo_title"}>GIVEAWAY</span>
                                 </div>
                             </a>
-                            <button className={"lb_btn"}>리더보드</button>
                         </header>
 
                         <div className={"inner"}>
@@ -71,7 +71,7 @@ const Admin = ({_allLength}) => {
 
 export const getServerSideProps = async ctx=>{
     const _query = ctx.query;
-    const _users = await axios.get("http://localhost:3000/api/user");
+    const _users = await axios.get(`http://localhost:${Port.port}/api/user`);
 
     console.log("userlength: ", _users.data.data.length)
 

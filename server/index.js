@@ -9,7 +9,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const routes = require("./routes/index");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 3001;
 
 require("dotenv").config();
 const dev = process.env.NODE_ENV !== "production"
@@ -18,13 +18,16 @@ const handle = app.getRequestHandler();
 
 const mongooseOptions = {
     useNewUrlParser: true,
-    user: "youna",
-    pass: "dbsk1234"
-}
-const mongoURL = "mongodb+srv://youna:dbsk1234@board.jaulo.mongodb.net/giveaway?retryWrites=true&w=majority";
+    user : 'playdonut',
+    pass : 'playdonut!@#&1',
+    useUnifiedTopology: true,
+    autoIndex: false
+};
 
-mongoose.connect(mongoURL, mongooseOptions).then(()=>console.log("DB connected..."));
-mongoose.connection.on("error", err=>console.log(`DB connection error : ${err.message}`));
+const mongoURL = 'mongodb://3.34.85.10:27017/pd-intranet';
+
+mongoose.connect(mongoURL, mongooseOptions ).then(() => console.log( "db connected..") );
+mongoose.connection.on("error", err => console.log(`DB connection error: ${err.message}`) );
 
 app.prepare().then(()=>{
     const server = express();
@@ -36,9 +39,12 @@ app.prepare().then(()=>{
         name: "next-connext.sid",
         secret: process.env.SESSION_SECRET,
         store: MongoStore.create({
-            mongoUrl: mongoURL,
-            collection: "sessions",
-            autoReconnect: true
+            mongoUrl: 'mongodb://playdonut:playdonut!%40%23%261@3.34.85.10:27017/pd-intranet',
+            options : {
+                useUnifiedTopology: true,
+                autoIndex: false
+            },
+            collection : 'sessions', autoReconnect:true
         }),
         resave: false,
         saveUninitialized: false,

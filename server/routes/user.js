@@ -4,6 +4,18 @@ const bcrypt = require("bcrypt");
 
 const User = require("../models/user");
 
+router.get("/creater", async (req, res)=>{
+    const newUser = new User;
+
+    newUser.eid = "9";
+    newUser.name = "L.채린";
+    newUser.image_url = "/images/avatar-24@2x.png";
+    newUser.password = "0";
+
+    await newUser.save();
+    await res.json({ data: newUser });
+})
+
 router.get("/", async (req, res)=>{
   const result = await User.find({}).exec();
 
@@ -16,8 +28,8 @@ router.get("/bcrypt",  async (req, res)=>{
 
     // 암호화해서 다시 저장
     for await (const user of users){
-        const bc = bcrypt.hashSync(user.password, 10);
-        user.password = bc;
+        const bc = bcrypt.hashSync(user.password, 10); // 유저 비밀번호 암호화
+        user.password = bc; // 다시 저장
         user.save();
     }
 

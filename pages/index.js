@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import axios from "axios";
 import proxy from "../valtio"
 import {useSnapshot} from "valtio";
+import Port from "../config";
 
 const state = proxy;
 
@@ -120,10 +121,10 @@ const Index = ({_users=[], _numbers=[], _gift=null, _logs=[]}) => {
 export const getServerSideProps = async ctx=>{
     const _query = ctx.query;
 
-    const _users = await axios.get("http://localhost:3000/api/user");
-    const _numbers = await axios.get("http://localhost:3000/api/admin");
-    const _gift = await axios.get("http://localhost:3000/api/admin/gift");
-    const _logs = await axios.get("http://localhost:3000/api/resultLog");
+    const _users = await axios.get(`http://localhost:${Port.port}/api/user`);
+    const _numbers = await axios.get(`http://localhost:${Port.port}/api/admin`);
+    const _gift = await axios.get(`http://localhost:${Port.port}/api/admin/gift`);
+    const _logs = await axios.get(`http://localhost:${Port.port}/api/resultLog`);
 
     return{
         props : {

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import axios from "axios";
+import {redirect} from "next/dist/server/api-utils";
+import Port from "../config";
 
 const Leaderboard = ({_logs=[], _week, _selectList=[]}) => {
     const [ selected, setSelected ] = useState(_week);
@@ -25,7 +27,6 @@ const Leaderboard = ({_logs=[], _week, _selectList=[]}) => {
                                     <span className={"logo_title"}>GIVEAWAY</span>
                                 </div>
                             </a>
-                            {/*<button className={"lb_btn"}>{_week}</button>*/}
                             <select value={selected} onChange={handleSelectChange}>
                                 {_selectList.map((val, key)=>(
                                     <option key={key} value={val.week}>{val.week}</option>
@@ -44,7 +45,6 @@ const Leaderboard = ({_logs=[], _week, _selectList=[]}) => {
                                                     <img className={"profile_img"} src={val?.user_id?.image_url} />
                                                     <span className={"name"}>{val?.user_id?.name}</span>
                                                 </div>
-                                                 {/*당첨인 애들만 */}
                                                 {val.result==="당첨" ? <img className={"result_img"} src={"/images/img-fire@2x.png"} /> : <></>}
                                             </li>
                                         )
@@ -62,8 +62,18 @@ const Leaderboard = ({_logs=[], _week, _selectList=[]}) => {
 
 export const getServerSideProps = async ctx=>{
     const week = !ctx.query?.week ? "" : ctx.query?.week;
-    const _logs = await axios.get(`http://localhost:3000/api/resultLog/result?week=${week}`);
-    const _selectList = await axios.get("http://localhost:3000/api/resultLog/select");
+    const _logs = await axios.get(`http://localhost:${Port.port}/api/resultLog/result?week=${week}`);
+    const _selectList = await axios.get(`http://localhost:${Port.port}/api/resultLog/select`);
+
+    if(_selectList.data.data.length === 0 ){
+        return{
+            redirect: {
+                source: '/',
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
 
     return{
         props : {
